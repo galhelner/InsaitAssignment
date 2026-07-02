@@ -16,6 +16,10 @@ app = FastAPI(
 # Include the vehicle router
 app.include_router(vehicle_router)
 
+@app.get("/health", status_code=200, summary="Health Check")
+def health_check():
+    return {"status": "healthy"}
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("app.main:app", host="127.0.0.1", port=8000, reload=True)
